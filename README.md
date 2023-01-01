@@ -271,7 +271,7 @@ Neste trecho, cada par de intervalo de linhas que deverá ser visitado é recupe
 
               f_p = from_p.get()
               t_p = to_p.get()
-Aqui, os dois valores são passados como argumentos à função **get_megasena_results**, juntamente com o valor de cada iteração a fim de que 
+Finalizando, os dois valores são passados como argumentos à função **get_megasena_results**, juntamente com o valor de cada iteração a fim de que 
 sirva de sufixo (**sufix**) ao nome de cada arquivo **csv** que será gerado por ela. Dessa forma não serão salvos nomes iguais de arquivo.
 A função **multiprocessing** permite que se execute funções de forma paralela.
 Isso permite utilizar a infraestrutura do processador de forma a otimizar o tempo de execução de determinadas tarefas.
@@ -282,6 +282,8 @@ Isso permite utilizar a infraestrutura do processador de forma a otimizar o temp
 
                   procx.start()
                   processes.append(procx)
+                  
+O último **for** executa todas os dez (10) processos simultaneamente.
 
           for procx in processes:
               procx.join()
