@@ -1,7 +1,7 @@
 # python_megasena_selenium
 Algoritmo em python que efetua webscrapping na página de resultados da Mega Sena utilizando Selenium.
 
-# **ESTE ARQUIVO SERÁ ATUALIZADO AINDA HOJE, 03-01-2023 POIS O ALGORITMO FOI MODIFICADO**
+# **ESTE ARQUIVO SERÁ ATUALIZADO ATÉ O DIA 05-01-2023 POIS O ALGORITMO FOI MODIFICADO**
 Este algoritmo efetua o web scraping , também conhecido como extração de dados da web, que é um processo de coleta de dados estruturados da web de maneira automatizada.
 A página alvo é a de resultados da Mega Sena, sorteio realizado pela Caixa Econômica Federal aqui no Brasil.
 Selenium é um framework portátil para testar aplicativos web. Ele fornece uma ferramenta de reprodução para a criação de testes 
