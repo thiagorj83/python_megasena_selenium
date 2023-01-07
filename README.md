@@ -72,6 +72,7 @@ espera mais dez (10) segundos.
                   print("Timed out na tentativa de carregamento da página principal em get_table_len")
                   time.sleep(2)
                   load_failed=True
+                  
 Após a excessão anterior, o loop **while** tenta detectar por dez (10) vezes um elemento da tabela de resultados a cada dez (10) segundos.
 Para cada tentativa falha, atualiza a tela através do método **refresh**  com o objetivo de que ela seja recarregada e o elemento se torne visível.
 
@@ -100,8 +101,43 @@ Acima, a variável tentaivas é reinializada com 15 tentativas.
 O método **maximize_window** maximiza a página anteriormente aberta.
               
               browser.maximize_window()
+Novamente temos um tratamento de exceção.
+Cria-se a espera de dez (10) segundos para detectar se um elemento no final da tela já se encontra visível. Isso cria a 
+garantia indireta de que se o elemento está visível, a página está carregada. Senão, lança-se a excessão que informa o **timeout** atingido e
+espera mais dez (10) segundos.
 
+          timeout = 10 
+              try:
+                  element_present = EC.presence_of_element_located((By.XPATH, '/html/body/div[4]/div/div[2]/button[3]'))
+                  WebDriverWait(browser, timeout).until(element_present)
+              except :
+                  print("Botão de aceite não localizado na página principal.")
+                  time.sleep(2)
+                  load_failed=True
+                  
+Após a excessão anterior, o loop **while** tenta detectar por dez (10) vezes um elemento da tabela de resultados a cada dez (10) segundos.
+Para cada tentativa falha, atualiza a tela através do método **refresh**  com o objetivo de que ela seja recarregada e o elemento se torne visível.
 
+              while load_failed==True and tentativas > 0 :
+                  browser.refresh()
+                  time.sleep(10)
+                  timeout = 10
+                  try:
+                      element_present = EC.presence_of_element_located((By.XPATH, '/html/body/div[4]/div/div[2]/button[3]'))
+                      WebDriverWait(browser, timeout).until(element_present)
+
+                  except:
+                      if tentativas > 0:
+                          tentativas = tentativas - 1
+                          print('Tentando novamente...')
+
+                      else:
+                          print('Todas as tentativas falharam...')
+                          exit()
+                  else:
+                      load_failed=False
+
+              tentativas=15
 Abaixo, efetua-se o clique em "aceitar" no banner aberto sobre a página principal com objetivo de fechá-lo e permitir o controle remoto da página pelo selenium.
 
 
